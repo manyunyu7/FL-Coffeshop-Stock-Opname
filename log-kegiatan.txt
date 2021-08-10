@@ -1,0 +1,31 @@
+Senin 12 Juli 2021
+-Pembuatan UI untuk role Driver
+-Pembuatan UI untuk role Pengguna
+
+Selasa 13 Juli 2021
+- Perencanaan Migrasi Database untuk fase 1
+- Fase 1 : Harga CPO, Truk, Berita, Simulasi Jual
+- Pembuatan Database untuk migrasi fase 1
+
+Rabu 14 Juli 2021 
+- Pengerjaan beberapa backlog berikut : 
+   *.Admin dapat melakukan login di website (khusus admin)
+   *.Admin dapat menginput update harga sawit
+   *.Admin dapat melihat grafik perubahan harga sawit
+   *.Admin dapat menghapus harga sawit yang salah
+
+Kamis 15 Juli 2021
+- Pengerjaan beberapa backlog berikut : 
+   *.Admin dapat menginput berita terkait sawit untuk ditampilkan di aplikasi
+   *.Admin dapat melakukan edit berita yang sudah diinput
+   *.Admin dapat menghapus berita yang sudah diinput
+   *.Admin dapat melihat berita yang sudah diinput
+
+Jumat 16 Juli 2021
+- Pengerjaan beberapa backlog berikut : 
+   *.Admin dapat menginputkan truck yang akan digunakan driver
+   *.Admin dapat mengedit truck yang digunakan driver
+   *.Admin dapat menghapus truck yang sudah diinput sebelumnya
+
+Sabtu-Ahad : Hari Libur
+Senin : Hari Raya Idhul Adha
