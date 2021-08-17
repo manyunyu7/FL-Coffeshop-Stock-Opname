@@ -31,6 +31,14 @@ Route::post('/user/update', [App\Http\Controllers\StaffController::class, 'updat
 Route::get('/user/{id}/delete', [App\Http\Controllers\StaffController::class, 'destroy']);
 
 
+
+Route::post('/bahan/create', [App\Http\Controllers\BahanController::class, 'viewCreate']);
+Route::post('/bahan/manage', [App\Http\Controllers\StaffController::class, 'store']);
+Route::post('/bahan/update', [App\Http\Controllers\StaffController::class, 'update']);
+Route::get('/bahan/{id}/delete', [App\Http\Controllers\StaffController::class, 'destroy']);
+
+
+Route::get('/admin/user/create', [App\Http\Controllers\StaffController::class, 'viewAdminCreate']);
 Route::get('/admin/user/manage', [App\Http\Controllers\StaffController::class, 'viewAdminManage']);
 Route::get('/admin/user/{id}/edit', [App\Http\Controllers\StaffController::class, 'viewAdminEdit']);
 

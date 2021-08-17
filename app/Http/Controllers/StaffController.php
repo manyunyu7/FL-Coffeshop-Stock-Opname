@@ -20,6 +20,11 @@ class StaffController extends Controller
         return view('karyawan.edit')->with(compact('users'));
     }
 
+    public function viewAdminCreate()
+    {
+        return view('karyawan.create');
+    }
+
 
     function destroy($id){
         $user = User::findOrFail($id);
@@ -39,8 +44,9 @@ class StaffController extends Controller
             "user_email" => "required",
             "user_password" => "required",
             "user_role" => "required",
-        ];
+       ];
 
+       
         $this->validate($request, $validateComponent);
 
         $user = new User();

@@ -32,6 +32,9 @@
                     </a>
                     <ul class="submenu ">
                         <li class="submenu-item ">
+                            <a href="{{url('/admin/user/create')}}">Tambah User</a>
+                        </li>
+                        <li class="submenu-item ">
                             <a href="{{url('/admin/user/manage')}}">Manage</a>
                         </li>
                     </ul>
