@@ -25,16 +25,16 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item  has-sub">
+                <li class="sidebar-item  has-sub {{ (Request::is('admin/user/*')) ? 'active' : ''}}">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
                         <span>Manajemen User</span>
                     </a>
-                    <ul class="submenu ">
-                        <li class="submenu-item ">
+                    <ul class="submenu  {{ (Request::is('admin/user/*')) ? 'active' : ''}} ">
+                        <li class="submenu-item  {{ (Request::is('/admin/user/create')) ? 'active' : ''}}">
                             <a href="{{url('/admin/user/create')}}">Tambah User</a>
                         </li>
-                        <li class="submenu-item ">
+                        <li class="submenu-item  {{ (Request::is('/admin/user/manage')) ? 'active' : ''}}">
                             <a href="{{url('/admin/user/manage')}}">Manage</a>
                         </li>
                     </ul>
