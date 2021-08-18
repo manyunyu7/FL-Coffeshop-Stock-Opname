@@ -32,10 +32,15 @@ Route::get('/user/{id}/delete', [App\Http\Controllers\StaffController::class, 'd
 
 
 
-Route::post('/bahan/create', [App\Http\Controllers\BahanController::class, 'viewCreate']);
-Route::post('/bahan/manage', [App\Http\Controllers\StaffController::class, 'store']);
-Route::post('/bahan/update', [App\Http\Controllers\StaffController::class, 'update']);
-Route::get('/bahan/{id}/delete', [App\Http\Controllers\StaffController::class, 'destroy']);
+Route::get('/material/create', [App\Http\Controllers\MaterialController::class, 'viewCreate']);
+Route::post('/material/manage', [App\Http\Controllers\MaterialController::class, 'store']);
+Route::post('/material/update', [App\Http\Controllers\MaterialController::class, 'update']);
+Route::get('/material/{id}/delete', [App\Http\Controllers\MaterialController::class, 'destroy']);
+
+Route::get('/material/store', 'MaterialController@store');
+Route::get('/material/{id}/edit', 'MaterialController@edit');
+Route::get('/material/{id}/delete', 'MaterialController@destroy');
+
 
 
 Route::get('/admin/user/create', [App\Http\Controllers\StaffController::class, 'viewAdminCreate']);
