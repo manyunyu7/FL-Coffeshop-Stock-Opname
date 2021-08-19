@@ -19,7 +19,7 @@
                 {{(Request::is('staff')) ? 'active' : ''}}
                 {{(Request::is('user')) ? 'active' : ''}}
                 ">
-                    <a href="{{asset('/frontend')}}/index.html" class='sidebar-link'>
+                    <a href="{{url('/home')}}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>
@@ -40,17 +40,17 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-item  has-sub">
+                <li class="sidebar-item  has-sub  {{ (Request::is('material/*')) ? 'active' : ''}}">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
                         <span>Material / Bahan</span>
                     </a>
-                    <ul class="submenu ">
-                        <li class="submenu-item ">
-                            <a href="{{url('/admin/user/manage')}}">Input Bahan</a>
+                    <ul class="submenu  {{ (Request::is('material/*')) ? 'active' : ''}} ">
+                        <li class="submenu-item   {{ (Request::is('material/create')) ? 'active' : ''}}">
+                            <a href="{{url('/material/create')}}">Input Bahan</a>
                         </li>
-                        <li class="submenu-item ">
-                            <a href="{{url('/admin/user/manage')}}">Manage Bahan</a>
+                        <li class="submenu-item  {{ (Request::is('material/manage')) ? 'active' : ''}}">
+                            <a href="{{url('/material/manage')}}">Manage Bahan</a>
                         </li>
                     </ul>
                 </li>

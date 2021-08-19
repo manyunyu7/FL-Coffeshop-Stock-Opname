@@ -33,13 +33,13 @@ Route::get('/user/{id}/delete', [App\Http\Controllers\StaffController::class, 'd
 
 
 Route::get('/material/create', [App\Http\Controllers\MaterialController::class, 'viewCreate']);
-Route::post('/material/manage', [App\Http\Controllers\MaterialController::class, 'store']);
 Route::post('/material/update', [App\Http\Controllers\MaterialController::class, 'update']);
 Route::get('/material/{id}/delete', [App\Http\Controllers\MaterialController::class, 'destroy']);
 
-Route::get('/material/store', 'MaterialController@store');
+Route::post('/material/store', 'MaterialController@store');
 Route::get('/material/{id}/edit', 'MaterialController@edit');
 Route::get('/material/{id}/delete', 'MaterialController@destroy');
+Route::get('/material/manage', 'MaterialController@viewManage');
 
 
 
