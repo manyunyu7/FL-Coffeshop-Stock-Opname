@@ -70,7 +70,7 @@
                                                             class="btn btn-primary btn-delete">Delete Data</button>
                                                     </td>
                                                     <td>
-                                                        <a href="{{url('admin/user/'.$data->id.'/edit')}}">
+                                                        <a href="{{url('material/'.$data->id.'/edit')}}">
                                                             <button id="{{ $data->id }}"  type="button"
                                                           class="btn btn-primary">Edit Data</button>
                                                         </a>
@@ -100,14 +100,14 @@
             <div class="modal-content">
                 <div class="modal-header bg-danger">
                     <h5 class="modal-title white" id="myModalLabel120">
-                        Anda Yaking Ingin Menghapus Data Karyawan Ini ?
+                        Are You Sure want to delete this ingredients?
                     </h5>
                     <button type="button" class="close hide-modal" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Data Karyawan terkait akan dihapus. 
+                    All related data with this Ingredients will be deleted. 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-secondary hide-modal" data-dismiss="modal">
@@ -118,7 +118,7 @@
                     <a class="btn-destroy" href="">
                         <button type="button" class="btn btn-danger ml-1 hide-modal " data-dismiss="modal">
                             <i class="bx bx-check d-block d-sm-none"></i>
-                            <span class=" d-sm-block">Hapus Karyawan</span>
+                            <span class=" d-sm-block">Delete</span>
                         </button>
                     </a>
                 
@@ -142,14 +142,6 @@
     <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js">
     </script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js">
-    </script>
-
-    <script>
-        $('body').on("click", ".btn-delete", function() {
-            var id = $(this).attr("id")
-            $(".btn-destroy").attr("href", window.location.origin + "/karyawan/" + id + "/delete")
-            $("#destroy-modal").modal("show")
-        });
     </script>
 
     <script type="text/javascript">
@@ -183,7 +175,7 @@
 
         $('body').on("click", ".btn-delete", function() {
             var id = $(this).attr("id")
-            $(".btn-destroy").attr("href", window.location.origin + "/user/" + id + "/delete")
+            $(".btn-destroy").attr("href", window.location.origin + "/material/" + id + "/delete")
             $("#destroy-modal").modal("show")
         });
     </script>
