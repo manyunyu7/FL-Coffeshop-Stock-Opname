@@ -47,10 +47,10 @@
                     </a>
                     <ul class="submenu  {{ (Request::is('supplier/*')) ? 'active' : ''}} ">
                         <li class="submenu-item   {{ (Request::is('supplier/create')) ? 'active' : ''}}">
-                            <a href="{{url('/material/create')}}">Input Supplier</a>
+                            <a href="{{url('/supplier/create')}}">Input Supplier</a>
                         </li>
                         <li class="submenu-item  {{ (Request::is('supplier/manage')) ? 'active' : ''}}">
-                            <a href="{{url('/material/manage')}}">Manage Supplier</a>
+                            <a href="{{url('/supplier/manage')}}">Manage Supplier</a>
                         </li>
                     </ul>
                 </li>

@@ -19,6 +19,7 @@ class CreateMaterialsTable extends Migration
             $table->string('stock')->nullable();
             $table->string('unit')->nullable();
             $table->string('photo')->nullable();
+            $table->boolean('is_deleted')->default(0)->nullable();
             $table->timestamps();
         });
     }
