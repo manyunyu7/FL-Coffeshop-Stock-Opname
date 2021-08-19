@@ -40,6 +40,21 @@
                     </ul>
                 </li>
 
+                <li class="sidebar-item  has-sub  {{ (Request::is('supplier/*')) ? 'active' : ''}}">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>Supplier</span>
+                    </a>
+                    <ul class="submenu  {{ (Request::is('supplier/*')) ? 'active' : ''}} ">
+                        <li class="submenu-item   {{ (Request::is('supplier/create')) ? 'active' : ''}}">
+                            <a href="{{url('/material/create')}}">Input Supplier</a>
+                        </li>
+                        <li class="submenu-item  {{ (Request::is('supplier/manage')) ? 'active' : ''}}">
+                            <a href="{{url('/material/manage')}}">Manage Supplier</a>
+                        </li>
+                    </ul>
+                </li>
+                
                 <li class="sidebar-item  has-sub  {{ (Request::is('material/*')) ? 'active' : ''}}">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
