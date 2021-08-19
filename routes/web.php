@@ -51,6 +51,15 @@ Route::get('/supplier/{id}/delete', 'SupplierController@destroy');
 Route::get('/supplier/manage', 'SupplierController@viewManage');
 
 
+Route::get('/menu/create', [App\Http\Controllers\MenuController::class, 'viewCreate']);
+Route::get('/supplier/{id}/delete', [App\Http\Controllers\SupplierController::class, 'destroy']);
+Route::post('/supplier/store', 'SupplierController@store');
+Route::get('/supplier/{id}/edit', 'SupplierController@viewEdit');
+Route::post('/supplier/update', 'SupplierController@update');
+Route::get('/supplier/{id}/delete', 'SupplierController@destroy');
+Route::get('/supplier/manage', 'SupplierController@viewManage');
+
+
 
 Route::get('/admin/user/create', [App\Http\Controllers\StaffController::class, 'viewAdminCreate']);
 Route::get('/admin/user/manage', [App\Http\Controllers\StaffController::class, 'viewAdminManage']);

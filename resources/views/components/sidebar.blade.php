@@ -62,28 +62,30 @@
                     </a>
                     <ul class="submenu  {{ (Request::is('material/*')) ? 'active' : ''}} ">
                         <li class="submenu-item   {{ (Request::is('material/create')) ? 'active' : ''}}">
-                            <a href="{{url('/material/create')}}">Input Bahan</a>
+                            <a href="{{url('/material/create')}}">Input Ingredients</a>
                         </li>
                         <li class="submenu-item  {{ (Request::is('material/manage')) ? 'active' : ''}}">
-                            <a href="{{url('/material/manage')}}">Manage Bahan</a>
+                            <a href="{{url('/material/manage')}}">Manage Ingredients</a>
                         </li>
                     </ul>
                 </li>
 
-                <li class="sidebar-item  has-sub">
+                <li class="sidebar-item  has-sub  {{ (Request::is('menu/*')) ? 'active' : ''}}">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
-                        <span>Menu Caffe</span>
+                        <span>Coffe Menu</span>
                     </a>
-                    <ul class="submenu ">
-                        <li class="submenu-item ">
-                            <a href="{{url('/admin/user/manage')}}">Input Menu</a>
+                    <ul class="submenu  {{ (Request::is('menu/*')) ? 'active' : ''}} ">
+                        <li class="submenu-item   {{ (Request::is('menu/create')) ? 'active' : ''}}">
+                            <a href="{{url('/menu/create')}}">Input Menu</a>
                         </li>
-                        <li class="submenu-item ">
-                            <a href="{{url('/admin/user/manage')}}">Manage Menu</a>
+                        <li class="submenu-item  {{ (Request::is('menu/manage')) ? 'active' : ''}}">
+                            <a href="{{url('/menu/manage')}}">Manage Menu</a>
                         </li>
                     </ul>
                 </li>
+
+    
 
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
