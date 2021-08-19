@@ -30,33 +30,34 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Add New Material</h4>
+                <h4 class="card-title">Add New Supplier</h4>
             </div>
 
             <div class="card-body">
-                <form action="{{ url('material/store') }}" enctype="multipart/form-data" method="post">
+                <form action="{{ url('supplier/store') }}" enctype="multipart/form-data" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
+
                             <div class="form-group">
-                                <label for="basicInput">Material Name</label>
-                                <input type="text" name="material_name" required class="form-control"
-                                    value="{{ old('material_name') }}" required id="basicInput"
-                                    placeholder="Material Name">
+                                <label for="basicInput">Supplier Name</label>
+                                <input type="text" name="name" required class="form-control" value="{{ old('name') }}"
+                                    required id="basicInput" placeholder="Supplier Name">
                             </div>
 
                             <div class="form-group">
-                                <label for="basicInput">Material Size Unit</label>
-                                <input type="text" name="material_unit" required class="form-control"
-                                    value="{{ old('material_unit') }}" id=" basicInput"
-                                    placeholder="Size Unit ( pcs,Kg,mg,ml,etc. )">
+                                <label for="basicInput">Supplier Contact</label>
+                                <input type="number" name="contact" class="form-control" value="{{ old('stock') }}"
+                                    placeholder="Supplier Contact">
                             </div>
 
                             <div class="form-group">
-                                <label for="basicInput">Stock</label>
-                                <input type="number" name="stock" class="form-control" value="{{ old('stock') }}"
-                                    placeholder="Initial Stock">
+                                <label for="">Supplier Address</label>
+                                <textarea class="form-control" name="address" placeholder="Address" rows="5"></textarea>
                             </div>
+
+
+
                         </div>
 
                         <div class="col-md-6">
@@ -66,7 +67,8 @@
                                 <input name="photo" class="form-control" type="file" id="formFile">
                             </div>
 
-                            <img src="https://i.stack.imgur.com/y9DpT.jpg" style="border-radius: 20px" id="imgPreview" class="img-fluid" alt="Responsive image">
+                            <img src="https://i.stack.imgur.com/y9DpT.jpg" style="border-radius: 20px" id="imgPreview"
+                                class="img-fluid" alt="Responsive image">
                         </div>
 
                         <div class="col-12">

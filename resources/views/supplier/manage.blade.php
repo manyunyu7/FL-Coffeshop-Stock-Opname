@@ -45,10 +45,10 @@
                                         <thead>
                                             <tr>
                                                 <th data-sortable="">No</th>
-                                                <th data-sortable="">Ingredients Name</th>
-                                                <th data-sortable="">Stock</th>
-                                                <th data-sortable="">Stock Unit</th>
+                                                <th data-sortable="">Supplier Name</th>
                                                 <th data-sortable="">Photo</th>
+                                                <th data-sortable="">Address</th>
+                                                <th data-sortable="">Contact</th>
                                                 <th data-sortable="">Created at</th>
                                                 <th data-sortable="">Edit</th>
                                                 <th data-sortable="">Hapus</th>
@@ -59,22 +59,23 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $data->name }}</td>
-                                                    <td>{{ $data->stock }}</td>
-                                                    <td>{{ $data->unit }}</td>
                                                     <td>
-                                                        <img  height="200px" style="border-radius: 20px" src='{{asset("$data->photo")}}' alt="">
+                                                        <img height="200px" style="border-radius: 20px"
+                                                            src='{{ asset("$data->photo") }}' alt="">
                                                     </td>
+                                                    <td>{{ $data->address }}</td>
+                                                    <td>{{ $data->contact }}</td>
                                                     <td>{{ $data->created_at }}</td>
                                                     <td>
-                                                        <button id="{{ $data->id }}"  data-toggle="modal" type="button"
+                                                        <button id="{{ $data->id }}" data-toggle="modal" type="button"
                                                             class="btn btn-primary btn-delete">Delete Data</button>
                                                     </td>
                                                     <td>
-                                                        <a href="{{url('material/'.$data->id.'/edit')}}">
-                                                            <button id="{{ $data->id }}"  type="button"
-                                                          class="btn btn-primary">Edit Data</button>
+                                                        <a href="{{ url('supplier/' . $data->id . '/edit') }}">
+                                                            <button id="{{ $data->id }}" type="button"
+                                                                class="btn btn-primary">Edit Data</button>
                                                         </a>
-                                                      
+
                                                     </td>
                                                 </tr>
                                             @empty
@@ -95,19 +96,20 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="destroy-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal fade" id="destroy-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-danger">
                     <h5 class="modal-title white" id="myModalLabel120">
-                        Are You Sure want to delete this ingredients?
+                        Are You Sure want to delete this supplier?
                     </h5>
                     <button type="button" class="close hide-modal" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    All related data with this Ingredients will be deleted. 
+                    All related data with this supplier will be nulled and uneditable.
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-secondary hide-modal" data-dismiss="modal">
@@ -121,7 +123,7 @@
                             <span class=" d-sm-block">Delete</span>
                         </button>
                     </a>
-                
+
                 </div>
             </div>
         </div>
@@ -175,7 +177,7 @@
 
         $('body').on("click", ".btn-delete", function() {
             var id = $(this).attr("id")
-            $(".btn-destroy").attr("href", window.location.origin + "/material/" + id + "/delete")
+            $(".btn-destroy").attr("href", window.location.origin + "/supplier/" + id + "/delete")
             $("#destroy-modal").modal("show")
         });
     </script>

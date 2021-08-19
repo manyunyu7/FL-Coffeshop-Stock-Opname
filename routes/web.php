@@ -45,7 +45,7 @@ Route::get('/material/manage', 'MaterialController@viewManage');
 Route::get('/supplier/create', [App\Http\Controllers\SupplierController::class, 'viewCreate']);
 Route::get('/supplier/{id}/delete', [App\Http\Controllers\SupplierController::class, 'destroy']);
 Route::post('/supplier/store', 'SupplierController@store');
-Route::get('/supplier{id}/edit', 'SupplierController@edit');
+Route::get('/supplier/{id}/edit', 'SupplierController@viewEdit');
 Route::post('/supplier/update', 'SupplierController@update');
 Route::get('/supplier/{id}/delete', 'SupplierController@destroy');
 Route::get('/supplier/manage', 'SupplierController@viewManage');
