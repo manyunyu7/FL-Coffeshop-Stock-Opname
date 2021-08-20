@@ -53,11 +53,11 @@ Route::get('/supplier/manage', 'SupplierController@viewManage');
 
 Route::get('/menu/create', [App\Http\Controllers\MenuController::class, 'viewCreate']);
 Route::get('/supplier/{id}/delete', [App\Http\Controllers\SupplierController::class, 'destroy']);
-Route::post('/supplier/store', 'SupplierController@store');
-Route::get('/supplier/{id}/edit', 'SupplierController@viewEdit');
-Route::post('/supplier/update', 'SupplierController@update');
-Route::get('/supplier/{id}/delete', 'SupplierController@destroy');
-Route::get('/supplier/manage', 'SupplierController@viewManage');
+Route::post('/menu/store', 'MenuController@store');
+Route::get('/menu/{id}/edit', 'MenuController@viewEdit');
+Route::post('/menu/update', 'MenuController@update');
+Route::get('/menu/{id}/delete', 'MenuController@destroy');
+Route::get('/menu/manage', 'MenuController@viewManage');
 
 
 

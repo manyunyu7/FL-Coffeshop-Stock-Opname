@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu;
+use Exception;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
-      /**
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function viewCreate()
     {
-        return view('material.create');
+        return view('menu.create');
     }
 
     /**
@@ -23,8 +25,19 @@ class MenuController extends Controller
      */
     public function viewManage()
     {
-        $datas = Material::all();
-        return view('material.manage')->with(compact('datas'));
+        $datas = Menu::all();
+        return view('menu.manage')->with(compact('datas'));
+    }
+
+    /**
+     * Show the form for editing a resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function viewEdit($id)
+    {
+        $datas = Menu::where('id', '=', $id)->first();
+        return view('menu.edit')->with(compact('datas'));
     }
 
     /**
@@ -35,26 +48,28 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        $material = new Material();
-        $material->name = $request->material_name;
-        $material->stock = $request->stock;
-        $material->unit = $request->material_unit;
+
+        // dd($request->all());
+
+        $data = new Menu();
+        $data->name = $request->name;
+        $data->description = $request->description;
         if ($request->hasFile('photo')) {
 
             $file = $request->file('photo');
             $extension = $file->getClientOriginalExtension(); // you can also use file name
             $fileName = time() . '.' . $extension;
 
-            $savePath = "/web_files/material/";
+            $savePath = "/web_files/menu/";
             $savePathDB = "$savePath$fileName";
             $path = public_path() . "$savePath";
             $file->move($path, $fileName);
 
             $photoPath = $savePathDB;
-            $material->photo = $photoPath;
+            $data->photo = $photoPath;
         }
 
-        if ($material->save()) {
+        if ($data->save()) {
             return back()->with(["success" => "Data saved successfully"]);
         } else {
             return back()->with(["error" => "Saving process failed"]);
@@ -93,15 +108,13 @@ class MenuController extends Controller
      */
     public function update(Request $request)
     {
-        $material = Material::findOrFail($request->id);
-        $material->name = $request->material_name;
-        $material->stock = $request->stock;
-        $material->unit = $request->material_unit;
+        $data = Menu::findOrFail($request->id);
+        $data->name = $request->name;
+        $data->description = $request->description;
+
         if ($request->hasFile('photo')) {
-
-
             // remove photo first
-            $file_path = public_path() . $material->photo;
+            $file_path = public_path() . $data->photo;
             if (file_exists($file_path)) {
                 try {
                     unlink($file_path);
@@ -114,22 +127,21 @@ class MenuController extends Controller
             $extension = $file->getClientOriginalExtension(); // you can also use file name
             $fileName = time() . '.' . $extension;
 
-            $savePath = "/web_files/material/";
+            $savePath = "/web_files/menu/";
             $savePathDB = "$savePath$fileName";
             $path = public_path() . "$savePath";
             $file->move($path, $fileName);
 
             $photoPath = $savePathDB;
-            $material->photo = $photoPath;
-
-     
+            $data->photo = $photoPath;
         }
 
-        if ($material->save()) {
+        if ($data->save()) {
             return back()->with(["success" => "Data saved successfully"]);
         } else {
             return back()->with(["error" => "Saving process failed"]);
         }
+
     }
 
     /**
