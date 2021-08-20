@@ -31,7 +31,7 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Edit Menu : {{ $datas->name }}</h4>
+                <h3 class="">Edit Menu : {{ $datas->name }}</h3>
             </div>
 
             <div class="card-body">
@@ -76,8 +76,8 @@
                                 <input name="photo" class="form-control" type="file" id="formFile">
                             </div>
 
-                            <img src="{{ asset($datas->photo) }}" style="border-radius: 20px; width:100%; height:400px;" id="imgPreview"
-                                class="img-fluid" alt="Responsive image">
+                            <img src="{{ asset($datas->photo) }}" style="border-radius: 20px; width:100%; height:400px;"
+                                id="imgPreview" class="img-fluid" alt="Responsive image">
                         </div>
 
 
@@ -88,6 +88,72 @@
             </div>
         </div>
     </section>
+
+
+     <!-- Input Style start -->
+     <section id="input-style">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Manage Data Menu</h4>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+                            <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+                                <div class="dataTable-container">
+                                    <table class="table table-striped dataTable-table" id="table_data">
+                                        <thead>
+                                            <tr>
+                                                <th data-sortable="">No</th>
+                                                <th data-sortable="">Name</th>
+                                                <th data-sortable="">Description</th>
+                                                <th data-sortable="">Photo</th>
+                                                <th data-sortable="">Created at</th>
+                                                <th data-sortable="">Edit</th>
+                                                <th data-sortable="">Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($materials as $data)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $data->name }}</td>
+                                                    <td>{{ $data->description }}</td>
+                                                    <td>
+                                                        <img  height="200px" style="border-radius: 20px" src='{{asset("$data->photo")}}' alt="">
+                                                    </td>
+                                                    <td>{{ $data->created_at }}</td>
+                                                    <td>
+                                                        <button id="{{ $data->id }}"  data-toggle="modal" type="button"
+                                                            class="btn btn-primary btn-delete">Delete Data</button>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{url('menu/'.$data->id.'/edit')}}">
+                                                            <button id="{{ $data->id }}"  type="button"
+                                                          class="btn btn-primary">Edit Data</button>
+                                                        </a>
+                                                      
+                                                    </td>
+                                                </tr>
+                                            @empty
+
+                                            @endforelse
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- Modal -->
     <div class="modal fade" id="add-stock-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"

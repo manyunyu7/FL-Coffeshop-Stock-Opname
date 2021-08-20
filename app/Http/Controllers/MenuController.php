@@ -36,8 +36,9 @@ class MenuController extends Controller
      */
     public function viewEdit($id)
     {
+        $materials = Menu::all();
         $datas = Menu::where('id', '=', $id)->first();
-        return view('menu.edit')->with(compact('datas'));
+        return view('menu.edit')->with(compact('datas','materials'));
     }
 
     /**
