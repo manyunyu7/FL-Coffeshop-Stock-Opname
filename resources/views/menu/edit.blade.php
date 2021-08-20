@@ -11,7 +11,7 @@
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('material/manage') }}">Caffe Menu</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('menu/manage') }}">Caffe Menu</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add</li>
                         </ol>
                     </nav>
@@ -53,7 +53,7 @@
                                     rows="13">{{ $datas->description }}</textarea>
                             </div>
 
-                       
+
 
                             <div class="col-12 mt-4">
                                 <button type="submit" class="btn btn-primary btn-block">Save Data</button>
@@ -82,22 +82,62 @@
         </div>
     </section>
 
-    <div class="border p-4 mt-2 mb-4">
-        <h4>Add Ingredients</h4>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
-            data-target="#add-stock-modal">
-            Add New
-        </button>
-    </div>
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="">Add Ingredients for {{ $datas->name }}</h3>
+            </div>
 
-     <!-- Input Style start -->
-     <section id="input-style">
+            <div class="card-body">
+                <form action="{{ url('ingredients/store') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="menu_id" value="{{ $datas->id }}">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="border p-4 mt-2 mb-4">
+                                <div class="form-group">
+                                    <label for="">Choose Ingredients</label>
+                                    <select class="form-control form-select" name="material_id">
+                                        <option value="">Choose Ingredient</option>
+                                        @forelse ($materials as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @empty
+
+                                        @endforelse
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">Amount</label>
+                                    <input type="number" min="0" max="99999" class="form-control" name="amount"
+                                        aria-describedby="helpId" placeholder="Used Amount for 1 portion">
+                                    <small id="helpId" class="form-text text-muted">Amount of used ingredients</small>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-block">Add Ingredients</button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Input Style start -->
+    <section id="input-style">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Manage Ingredients</h4>
+                        <h3>Manage Ingredients on {{ $datas->name }}</h3>
                     </div>
 
                     <div class="card-body">
@@ -113,25 +153,23 @@
                                                 <th data-sortable="">Used Composition</th>
                                                 <th data-sortable="">Created at</th>
                                                 <th data-sortable="">Edit</th>
-                                                <th data-sortable="">Delete</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($materials as $data)
+                                            @forelse ($materialUsed as $data)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $data->name }}</td>
+                                                    <td>{{ $data->material->name }}</td>
+                                                    <td>{{ $data->material->unit }}</td>
+                                                    <td>{{ $data->amount }}</td>
+                                                    {{-- <td>
+                                                        <img height="200px" style="border-radius: 20px"
+                                                            src='{{ asset("$data->photo") }}' alt="">
+                                                    </td> --}}
                                                     <td>{{ $data->created_at }}</td>
                                                     <td>
-                                                        <button id="{{ $data->id }}"  data-toggle="modal" type="button"
+                                                        <button id="{{ $data->id }}" data-toggle="modal" type="button"
                                                             class="btn btn-primary btn-delete">Delete Data</button>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{url('menu/'.$data->id.'/edit')}}">
-                                                            <button id="{{ $data->id }}"  type="button"
-                                                          class="btn btn-primary">Edit Data</button>
-                                                        </a>
-                                                      
                                                     </td>
                                                 </tr>
                                             @empty
@@ -152,22 +190,34 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="add-stock-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+    <div class="modal fade" id="destroy-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div class="modal-header bg-danger">
+                    <h5 class="modal-title white" id="myModalLabel120">
+                        Are You Sure want to delete this ingredients?
+                    </h5>
+                    <button type="button" class="close hide-modal" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Body
+                    This ingredients will be deleted from this recipe
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-light-secondary hide-modal" data-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class=" d-sm-block">Close</span>
+                    </button>
+
+                    <a class="btn-destroy" href="">
+                        <button type="button" class="btn btn-danger ml-1 hide-modal " data-dismiss="modal">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class=" d-sm-block">Delete</span>
+                        </button>
+                    </a>
+
                 </div>
             </div>
         </div>
@@ -193,7 +243,6 @@
             var table = $('#table_data').DataTable({
                 processing: true,
                 serverSide: false,
-                scrollX: true,
                 columnDefs: [{
                     orderable: true,
                     targets: 0
@@ -212,15 +261,11 @@
                     'csvHtml5',
                 ],
             });
-
-
-
-
         });
 
         $('body').on("click", ".btn-delete", function() {
             var id = $(this).attr("id")
-            $(".btn-destroy").attr("href", window.location.origin + "/menu/" + id + "/delete")
+            $(".btn-destroy").attr("href", window.location.origin + "/ingredients/" + id + "/delete")
             $("#destroy-modal").modal("show")
         });
     </script>

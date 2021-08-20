@@ -59,6 +59,9 @@ Route::post('/menu/update', 'MenuController@update');
 Route::get('/menu/{id}/delete', 'MenuController@destroy');
 Route::get('/menu/manage', 'MenuController@viewManage');
 
+Route::post('/ingredients/store', [App\Http\Controllers\MenuMaterialController::class, 'store']);
+Route::get('/ingredients/{id}/delete', [App\Http\Controllers\MenuMaterialController::class, 'destroy']);
+
 
 
 Route::get('/admin/user/create', [App\Http\Controllers\StaffController::class, 'viewAdminCreate']);

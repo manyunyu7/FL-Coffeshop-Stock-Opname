@@ -146,7 +146,6 @@
             var table = $('#table_data').DataTable({
                 processing: true,
                 serverSide: false,
-                scrollX: true,
                 columnDefs: [{
                     orderable: true,
                     targets: 0
