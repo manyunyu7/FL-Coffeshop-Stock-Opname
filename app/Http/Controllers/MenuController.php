@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MappingMenuMaterial as ModelsMappingMenuMaterial;
+use App\Models\Material;
 use App\Models\Menu;
 use Exception;
 use Illuminate\Http\Request;
+use MappingMenuMaterial;
 
 class MenuController extends Controller
 {
@@ -36,8 +39,10 @@ class MenuController extends Controller
      */
     public function viewEdit($id)
     {
+        $materials = Material::all();
         $datas = Menu::where('id', '=', $id)->first();
-        return view('menu.edit')->with(compact('datas'));
+        $materialUsed = ModelsMappingMenuMaterial::where('id_menu','=',$datas->id)->get();
+        return view('menu.edit')->with(compact('datas','materials','materialUsed'));
     }
 
     /**
