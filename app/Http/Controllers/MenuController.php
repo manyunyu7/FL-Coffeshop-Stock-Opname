@@ -152,8 +152,8 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        $material = Material::findOrFail($id);
-        $file_path = public_path() . $material->photo;
+        $menu = Menu::findOrFail($id);
+        $file_path = public_path() . $menu->photo;
         if (file_exists($file_path)) {
             try {
                 unlink($file_path);
@@ -161,7 +161,7 @@ class MenuController extends Controller
                 // Do Nothing on Exception
             }
         }
-        if ($material->delete()) {
+        if ($menu->delete()) {
             return back()->with(["success" => "Data deleted successfully"]);
         } else {
             return back()->with(["error" => "Delete process failed"]);
