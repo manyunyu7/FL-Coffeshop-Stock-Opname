@@ -63,6 +63,19 @@ Route::get('/menu/manage', 'MenuController@viewManage');
 Route::post('/ingredients/store', [App\Http\Controllers\MenuMaterialController::class, 'store']);
 Route::get('/ingredients/{id}/delete', [App\Http\Controllers\MenuMaterialController::class, 'destroy']);
 
+Route::prefix('stock-opname')->group(function () {
+    Route::get('/create', [App\Http\Controllers\StockOpnameController::class, 'viewCreate']);
+    Route::get('/{id}/delete', 'StockOpnameController@destroy');
+    Route::post('/store', 'StockOpnameController@store');
+    Route::get('/{id}/edit', 'StockOpnameController@viewEdit');
+    Route::post('/update', 'StockOpnameController@update');
+    Route::get('/{id}/delete', 'StockOpnameController@destroy');
+    Route::get('/manage', 'StockOpnameController@viewManage');
+    Route::get('/input-daily', 'StockOpnameController@viewInputDaily');
+    Route::get('/daily-input', 'StockOpnameController@viewInputDaily');
+});
+
+
 
 
 Route::get('/admin/user/create', [App\Http\Controllers\StaffController::class, 'viewAdminCreate']);
