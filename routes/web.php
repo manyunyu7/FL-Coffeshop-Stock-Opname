@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -68,4 +69,11 @@ Route::get('/admin/user/create', [App\Http\Controllers\StaffController::class, '
 Route::get('/admin/user/manage', [App\Http\Controllers\StaffController::class, 'viewAdminManage']);
 Route::get('/admin/user/{id}/edit', [App\Http\Controllers\StaffController::class, 'viewAdminEdit']);
 
+Route::get('logout', function ()
+{
+    auth()->logout();
+    Session()->flush();
+
+    return Redirect::to('/');
+})->name('logout');
 
