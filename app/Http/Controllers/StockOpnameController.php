@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Material;
+use App\Models\OutbondLogistic;
 use App\Models\StockOpname;
 use App\Models\StockOpnameData;
 use App\Models\User;
@@ -69,12 +70,21 @@ class StockOpnameController extends Controller
                 $productData = new StockOpnameData();
                 $productData->id_material = $key;
                 $productData->remaining_stock = $value;
+                $productData->used_stock = $product->stock - $value;
                 $productData->id_opname = $objectMain->id;
                 $productData->save();
-                # code...
-
+                
+                //Update Product Stock
                 $product->stock = $productData->remaining_stock;
                 $product->save();
+
+                // Save outbond histories
+                $outbond = new OutbondLogistic();
+                $outbond->id_material = $key;
+                $outbond->id_opname = $objectMain->id;
+                $outbond->count = $productData->used_stock;
+                $outbond->save();
+
             }
             return back()->with(["success" => "Data saved successfully"]);
         } else {

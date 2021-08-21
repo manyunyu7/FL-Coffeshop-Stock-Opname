@@ -134,9 +134,9 @@
                             </div>
                         </div>
 
-                        <div class="col-12 mt-4">
+                        {{-- <div class="col-12 mt-4">
                             <button type="submit" class="btn btn-primary btn-block btn-large">DOWNLOAD PDF</button>
-                        </div>
+                        </div> --}}
                     </div>
 
                 </div>

@@ -77,6 +77,24 @@ Route::prefix('stock-opname')->group(function () {
     Route::post('/daily-input/store', 'StockOpnameController@storeDaily');
 });
 
+Route::prefix('inbound')->group(function () {
+    Route::get('/create', [App\Http\Controllers\InboundController::class, 'viewCreate']);
+    Route::get('/{id}/delete', 'InboundController@destroy');
+    Route::post('/store', 'InboundController@store');
+    Route::get('/{id}/edit', 'InboundController@viewEdit');
+    Route::post('/update', 'InboundController@update');
+    Route::get('/{id}/delete', 'InboundController@destroy');
+    Route::get('/report', 'InboundController@viewManage');
+    Route::get('/manage', 'InboundController@viewManage');
+    Route::get('/input-daily', 'InboundController@viewInputDaily');
+    Route::get('/daily-input', 'InboundController@viewInputDaily');
+    Route::post('/daily-input/store', 'InboundController@storeDaily');
+});
+
+Route::prefix('outbond')->group(function () {
+    Route::get('/history', 'OutbondController@viewManage');
+});
+
 
 
 

@@ -54,8 +54,8 @@
 
                             <div class="form-group">
                                 <label for="">Input Date</label>
-                                <input type="datetime-local" required class="form-control" name="date" id="" aria-describedby="helpId"
-                                    placeholder="">
+                                <input type="datetime-local" required class="form-control" name="date" id=""
+                                    aria-describedby="helpId" placeholder="">
                                 <small id="helpId" class="form-text text-muted">Input Date</small>
                             </div>
 
@@ -142,9 +142,46 @@
                             </div>
                         </div>
 
-                        <div class="col-12 mt-4">
-                            <button type="submit" class="btn btn-primary btn-block">Add Data</button>
+                        <div class="col-12 mt-5 col-23">
+                            <button type="button" class="btn btn-primary btn-addz">Add Data</button>
                         </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                            aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-primary">
+                                        <h5 class="modal-title white" id="myModalLabel120">
+                                            Are you sure want to add this opname data ?
+                                        </h5>
+                                        <button type="button" class="close hide-modal" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Added Stock can't be deleted or edited ( one way only ). 
+                                        <strong>Please double check the data</strong>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light-secondary hide-modal"
+                                            data-dismiss="modal">
+                                            <i class="bx bx-x d-block d-sm-none"></i>
+                                            <span class=" d-sm-block">Close</span>
+                                        </button>
+
+                                        <button type="submit" class="btn btn-primary ml-1 hide-modal " data-dismiss="modal">
+                                            <i class="bx bx-check d-block d-sm-none"></i>
+                                            <span class=" d-sm-block">Submit Data</span>
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
 
                 </div>
@@ -196,11 +233,19 @@
 
 
         });
+        
+        var el = document.getElementById('formFile');
+        el.onchange = function() {
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(document.getElementById("formFile").files[0])
+            fileReader.onload = function(oFREvent) {
+                document.getElementById("imgPreview").src = oFREvent.target.result;
+            };
+        }
 
-        $('body').on("click", ".btn-delete", function() {
+        $('body').on("click", ".btn-addz", function() {
             var id = $(this).attr("id")
-            $(".btn-destroy").attr("href", window.location.origin + "/menu/" + id + "/delete")
-            $("#destroy-modal").modal("show")
+            $("#add-modal").modal("show")
         });
     </script>
 

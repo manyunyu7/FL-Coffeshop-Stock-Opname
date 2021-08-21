@@ -5,14 +5,14 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Stock Opname Report</h3>
-                    <p class="text-subtitle text-muted">Stock Report</p>
+                    <h3>Outbond Logistics</h3>
+                    <p class="text-subtitle text-muted">Outbond Material Histories</p>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Stock Opname</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Report</li>
+                            <li class="breadcrumb-item"><a href="#">Outbond Logistics</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">History</li>
                         </ol>
                     </nav>
                 </div>
@@ -32,40 +32,40 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Laporan Stock Opname</h4>
+                        <h4 class="card-title">Outbond Logistic</h4>
                     </div>
 
                     <div class="card-body">
 
                         <div class="table-responsive">
+
                             <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
                                 <div class="dataTable-container">
                                     <table class="table table-striped dataTable-table" id="table_data">
                                         <thead>
                                             <tr>
                                                 <th data-sortable="">No</th>
-                                                <th data-sortable="">Date</th>
-                                                <th data-sortable="">Staff</th>
-                                                <th data-sortable="">Signature</th>
-                                                <th data-sortable="">See Report</th>
+                                                <th data-sortable="">Material Name</th>
+                                                <th data-sortable="">Outbonds Amount</th>
+                                                <th data-sortable="">Outbond on Opname</th>
+                                                <th data-sortable="">See Opname</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @forelse ($datas as $data)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $data->created_at }}</td>
-                                                    <td>{{ $data->user->name }}</td>
+                                                    <td>{{ $data->material->name }}</td>
+                                                    <td>{{ $data->count }} {{ $data->material->unit }}</td>
+                                                    <td>{{ $data->opname->date }}</td>
                                                     <td>
-                                                        <img  height="100px" style="border-radius: 20px" src='{{asset("$data->photo")}}' alt="">
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{url('stock-opname/'.$data->id.'/edit')}}">
-                                                            <button id="{{ $data->id }}"  type="button"
-                                                          class="btn btn-primary">Edit Data</button>
+                                                        <a href="{{ url('/stock-opname/' . $data->opname->id . '/edit') }}">
+                                                            <button id="{{ $data->id }}" type="button"
+                                                                class="btn btn-primary">See Opname</button>
                                                         </a>
+
                                                     </td>
-                                                
+
                                                 </tr>
                                             @empty
 
@@ -85,7 +85,8 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="destroy-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal fade" id="destroy-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-danger">
@@ -97,7 +98,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    All related data with this Ingredients will be deleted. 
+                    All related data with this Ingredients will be deleted.
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-secondary hide-modal" data-dismiss="modal">
@@ -111,7 +112,7 @@
                             <span class=" d-sm-block">Delete</span>
                         </button>
                     </a>
-                
+
                 </div>
             </div>
         </div>
@@ -165,7 +166,7 @@
 
         $('body').on("click", ".btn-delete", function() {
             var id = $(this).attr("id")
-            $(".btn-destroy").attr("href", window.location.origin + "/menu/" + id + "/delete")
+            $(".btn-destroy").attr("href", window.location.origin + "/material/" + id + "/delete")
             $("#destroy-modal").modal("show")
         });
     </script>
