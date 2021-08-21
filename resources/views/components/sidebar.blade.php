@@ -110,12 +110,12 @@
                         <i class="bi bi-stack"></i>
                         <span>Inbound Logistic</span>
                     </a>
-                    <ul class="submenu  {{ (Request::is('material/inbound*')) ? 'active' : ''}} ">
-                        <li class="submenu-item   {{ (Request::is('material/inbound')) ? 'active' : ''}}">
-                            <a href="{{url('/material/inbound/create')}}">Create New Inbound</a>
+                    <ul class="submenu  {{ (Request::is('inbound/*')) ? 'active' : ''}} ">
+                        <li class="submenu-item   {{ (Request::is('inbound/create')) ? 'active' : ''}}">
+                            <a href="{{url('/inbound/create')}}">Create New Inbound</a>
                         </li>
-                        <li class="submenu-item  {{ (Request::is('material/inbound')) ? 'active' : ''}}">
-                            <a href="{{url('/material/inbound/manage')}}">See Existing Inbound Logistic</a>
+                        <li class="submenu-item  {{ (Request::is('inbound/manage')) ? 'active' : ''}}">
+                            <a href="{{url('/inbound/manage')}}">See Existing Inbound Logistic</a>
                         </li>
                     </ul>
                 </li>
