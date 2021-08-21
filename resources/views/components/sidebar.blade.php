@@ -89,7 +89,25 @@
                     </ul>
                 </li>
 
+                <li class="sidebar-title">Stock Opname</li>
 
+                <li class="sidebar-item  has-sub  {{ (Request::is('stock-opname/*')) ? 'active' : ''}}">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>Manage Stock Opname</span>
+                    </a>
+                    <ul class="submenu  {{ (Request::is('stock-opname/*')) ? 'active' : ''}} ">
+                        <li class="submenu-item   {{ (Request::is('stock-opname/manual-input')) ? 'active' : ''}}">
+                            <a href="{{url('/stock-opname/manual-input')}}">Manual Input</a>
+                        </li>
+                        <li class="submenu-item  {{ (Request::is('stock-opname/daily-input')) ? 'active' : ''}} ">
+                            <a href="{{url('/stock-opname/daily-input')}}">Daily Input</a>
+                        </li>
+                        <li class="submenu-item  {{ (Request::is('stock-opname/report')) ? 'active' : ''}} ">
+                            <a href="{{url('/stock-opname/report')}}">Report</a>
+                        </li>
+                    </ul>
+                </li>
     
               
 
