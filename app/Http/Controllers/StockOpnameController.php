@@ -41,7 +41,6 @@ class StockOpnameController extends Controller
         if ($objectMain->save()) {
             $opnames = $request->used;
 
-
             foreach ($opnames as $key => $value) {
                 $product = Material::find($key);
                 echo "kirik $product->name used $value <br> ";
@@ -51,6 +50,10 @@ class StockOpnameController extends Controller
                 $productData->id_opname=$objectMain->id;
                 $productData->save();
                 # code...
+                
+                $product->stock = $productData->remaining_stock;
+                $product->save();
+
             }
             return back()->with(["success" => "Data saved successfully"]);
         } else {
