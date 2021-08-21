@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class StockOpname extends Model
 {
     use HasFactory;
+    protected $appends = ['user'];
+
+    function getUserAttribute(){
+        return User::find($this->id_staff);
+    }
 }

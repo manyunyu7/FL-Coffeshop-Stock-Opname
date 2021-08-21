@@ -70,6 +70,7 @@ Route::prefix('stock-opname')->group(function () {
     Route::get('/{id}/edit', 'StockOpnameController@viewEdit');
     Route::post('/update', 'StockOpnameController@update');
     Route::get('/{id}/delete', 'StockOpnameController@destroy');
+    Route::get('/report', 'StockOpnameController@viewManage');
     Route::get('/manage', 'StockOpnameController@viewManage');
     Route::get('/input-daily', 'StockOpnameController@viewInputDaily');
     Route::get('/daily-input', 'StockOpnameController@viewInputDaily');

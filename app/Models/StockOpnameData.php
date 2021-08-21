@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class StockOpnameData extends Model
 {
     use HasFactory;
+    protected $appends = ['material'];
+
+    function getMaterialAttribute()
+    {
+        return Material::find($this->id_material);
+    }
 }

@@ -103,6 +103,9 @@
                         <li class="submenu-item  {{ (Request::is('stock-opname/daily-input')) ? 'active' : ''}} ">
                             <a href="{{url('/stock-opname/daily-input')}}">Daily Input</a>
                         </li>
+                        <li class="submenu-item  {{ (Request::is('stock-opname/report')) ? 'active' : ''}} ">
+                            <a href="{{url('/stock-opname/report')}}">Report</a>
+                        </li>
                     </ul>
                 </li>
     

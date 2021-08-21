@@ -12,16 +12,38 @@ class StockOpnameController extends Controller
 {
     public function viewInputDaily()
     {
-        $datas = Material::orderBy('id','desc')->get();
-        $users = User::where('role','=','2')->get();
+        $datas = Material::orderBy('id', 'desc')->get();
+        $users = User::where('role', '=', '2')->get();
         $materials = Material::orderBy('id')->get();
-        return view('opname.create')->with(compact('datas','materials','users'));
+        return view('opname.create')->with(compact('datas', 'materials', 'users'));
     }
 
-    public function storeDaily(Request $request){
+    /**
+     * Show the form for managing existing resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function viewManage()
+    {
+        $datas = StockOpname::all();
+        return view('opname.manage')->with(compact('datas'));
+    }
+
+    public function viewEdit($id)
+    {
+        $opname = StockOpname::find($id);
+        $datas = StockOpnameData::where('id_opname','=',$id)->get();
+        $users = User::where('role', '=', '2')->get();
+        $materials = Material::orderBy('id')->get();
+        return view('opname.edit')->with(compact('opname','datas','materials'));
+    }
+
+    public function storeDaily(Request $request)
+    {
         // dd($request->all());
         $objectMain = new StockOpname();
-        $objectMain->id_staff;
+        $objectMain->id_staff = $request->user_id;
+        $objectMain->date = $request->date;
 
         if ($request->hasFile('photo')) {
 
@@ -47,19 +69,16 @@ class StockOpnameController extends Controller
                 $productData = new StockOpnameData();
                 $productData->id_material = $key;
                 $productData->remaining_stock = $value;
-                $productData->id_opname=$objectMain->id;
+                $productData->id_opname = $objectMain->id;
                 $productData->save();
                 # code...
-                
+
                 $product->stock = $productData->remaining_stock;
                 $product->save();
-
             }
             return back()->with(["success" => "Data saved successfully"]);
         } else {
             return back()->with(["error" => "Saving process failed"]);
         }
-
     }
-
 }

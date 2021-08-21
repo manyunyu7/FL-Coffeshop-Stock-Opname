@@ -5,14 +5,14 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Menu Management</h3>
-                    <p class="text-subtitle text-muted">Menu Management</p>
+                    <h3>Stock Opname Report</h3>
+                    <p class="text-subtitle text-muted">Stock Report</p>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Menu</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Manage</li>
+                            <li class="breadcrumb-item"><a href="#">Stock Opname</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Report</li>
                         </ol>
                     </nav>
                 </div>
@@ -32,7 +32,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Manage Data Menu</h4>
+                        <h4 class="card-title">Laporan Stock Opname</h4>
                     </div>
 
                     <div class="card-body">
@@ -44,11 +44,10 @@
                                         <thead>
                                             <tr>
                                                 <th data-sortable="">No</th>
-                                                <th data-sortable="">Name</th>
-                                                <th data-sortable="">Description</th>
-                                                <th data-sortable="">Photo</th>
-                                                <th data-sortable="">Created at</th>
-                                                <th data-sortable="">Edit</th>
+                                                <th data-sortable="">Date</th>
+                                                <th data-sortable="">Staff</th>
+                                                <th data-sortable="">Signature</th>
+                                                <th data-sortable="">See Report</th>
                                                 <th data-sortable="">Delete</th>
                                             </tr>
                                         </thead>
@@ -56,23 +55,22 @@
                                             @forelse ($datas as $data)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $data->name }}</td>
-                                                    <td>{{ $data->description }}</td>
-                                                    <td>
-                                                        <img  height="200px" style="border-radius: 20px" src='{{asset("$data->photo")}}' alt="">
-                                                    </td>
                                                     <td>{{ $data->created_at }}</td>
+                                                    <td>{{ $data->user->name }}</td>
+                                                    <td>
+                                                        <img  height="100px" style="border-radius: 20px" src='{{asset("$data->photo")}}' alt="">
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{url('stock-opname/'.$data->id.'/edit')}}">
+                                                            <button id="{{ $data->id }}"  type="button"
+                                                          class="btn btn-primary">Edit Data</button>
+                                                        </a>
+                                                    </td>
                                                     <td>
                                                         <button id="{{ $data->id }}"  data-toggle="modal" type="button"
                                                             class="btn btn-primary btn-delete">Delete Data</button>
                                                     </td>
-                                                    <td>
-                                                        <a href="{{url('menu/'.$data->id.'/edit')}}">
-                                                            <button id="{{ $data->id }}"  type="button"
-                                                          class="btn btn-primary">Edit Data</button>
-                                                        </a>
-                                                      
-                                                    </td>
+                                                
                                                 </tr>
                                             @empty
 
