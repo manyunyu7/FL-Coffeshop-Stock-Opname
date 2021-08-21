@@ -15,6 +15,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        return redirect('/admin');
     }
 
     /**
@@ -24,12 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->role==1){
+        if (Auth::user()->role == 1) {
             return redirect('/admin');
         }
+        return redirect('/admin');
     }
 
-    public function admin(){
+    public function admin()
+    {
         return view('home.admin');
     }
 }
