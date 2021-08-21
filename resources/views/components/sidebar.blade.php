@@ -39,7 +39,6 @@
                         </li>
                     </ul>
                 </li>
-                <li class="sidebar-title">Material Supplier</li>
 
                 <li class="sidebar-item  has-sub  {{ (Request::is('supplier/*')) ? 'active' : ''}}">
                     <a href="#" class='sidebar-link'>
@@ -55,7 +54,6 @@
                         </li>
                     </ul>
                 </li>
-                <li class="sidebar-title">Material / Ingredients</li>
                 
                 <li class="sidebar-item  has-sub  {{ (Request::is('material/*')) ? 'active' : ''}}">
                     <a href="#" class='sidebar-link'>
@@ -71,8 +69,7 @@
                         </li>
                     </ul>
                 </li>
-
-                <li class="sidebar-title">Menu & Ingredients</li>
+           
 
                 <li class="sidebar-item  has-sub  {{ (Request::is('menu/*')) ? 'active' : ''}}">
                     <a href="#" class='sidebar-link'>
@@ -89,7 +86,6 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-title">Stock Opname</li>
 
                 <li class="sidebar-item  has-sub  {{ (Request::is('stock-opname/*')) ? 'active' : ''}}">
                     <a href="#" class='sidebar-link'>
@@ -108,7 +104,21 @@
                         </li>
                     </ul>
                 </li>
-    
+
+                <li class="sidebar-item  has-sub  {{ (Request::is('material/inbound*')) ? 'active' : ''}}">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>Inbound Logistic</span>
+                    </a>
+                    <ul class="submenu  {{ (Request::is('material/inbound*')) ? 'active' : ''}} ">
+                        <li class="submenu-item   {{ (Request::is('material/inbound')) ? 'active' : ''}}">
+                            <a href="{{url('/material/inbound/create')}}">Create New Inbound</a>
+                        </li>
+                        <li class="submenu-item  {{ (Request::is('material/inbound')) ? 'active' : ''}}">
+                            <a href="{{url('/material/inbound/manage')}}">See Existing Inbound Logistic</a>
+                        </li>
+                    </ul>
+                </li>
               
 
  
