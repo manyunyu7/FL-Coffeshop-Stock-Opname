@@ -15,6 +15,10 @@ class CreateStockOpnamesTable extends Migration
     {
         Schema::create('stock_opnames', function (Blueprint $table) {
             $table->id();
+            $table->string('date')->nullable();
+            $table->string('photo')->nullable();
+            $table->unsignedBigInteger('id_staff')->nullable();
+            $table->foreign('id_staff')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
         });
     }

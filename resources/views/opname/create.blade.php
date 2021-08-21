@@ -26,100 +26,183 @@
         @include('components.message')
     </section>
 
-    
+    <form action="{{ url('stock-opname/daily-input/store') }}" enctype="multipart/form-data" method="post">
 
-    <section class="section">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Add New Menu</h4>
-            </div>
+        <section class="section">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Input Daily Stock Opname</h4>
+                </div>
 
-            <div class="card-body">
-                <form action="{{ url('menu/store') }}" enctype="multipart/form-data" method="post">
-                    @csrf
+                <div class="card-body">
+
                     <div class="row">
                         <div class="col-md-6">
+
                             <div class="form-group">
-                                <label for="basicInput">Menu Name</label>
-                                <input type="text" name="name" required class="form-control"
-                                    value="{{ old('name') }}" required id="inputName"
-                                    placeholder="Menu Name">
+                                <div class="form-group">
+                                    <label for="">Executors</label>
+                                    <select class="form-control form-select" name="user_id" id="">
+                                        @forelse ($users as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @empty
+                                            <option value="1">Super Admin</option>
+                                        @endforelse
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="formFile" class="form-label">Menu Photo</label>
-                                <input name="photo" class="form-control" type="file" id="formFile">
+                                <label for="">Input Date</label>
+                                <input type="datetime-local" required class="form-control" name="date" id="" aria-describedby="helpId"
+                                    placeholder="">
+                                <small id="helpId" class="form-text text-muted">Input Date</small>
                             </div>
 
                             <div class="form-group">
-                              <label for="">Description</label>
-                              <textarea class="form-control" name="description" id="" rows="13"></textarea>
+                                <label for="formFile" class="form-label">Execture Staff Signature </label>
+                                <input name="photo" required class="form-control" type="file" id="formFile">
                             </div>
 
                         </div>
 
                         <div class="col-md-6">
 
-                            <h4>Preview Menu</h4>
-              
+                            <h4>Preview Signature</h4>
+
                             <div class="card">
                                 <div class="card-content">
-                                    <img src="https://i.stack.imgur.com/y9DpT.jpg"  id="imgPreview" class="card-img-top img-fluid"
-                                        alt="singleminded">
-                                    <div class="card-body">
-                                        <h5 class="card-title" id="previewName">Americano (Example)</h5>
-                                        <p id="menuDescription" class="card-text">
-                                            Chocolate sesame snaps apple pie danish cupcake sweet roll jujubes
-                                            tiramisu.Gummies
-                                            bonbon apple pie fruitcake icing biscuit apple pie jelly-o sweet roll.
-                                        </p>
-                                    </div>
+                                    <img src="https://i.stack.imgur.com/y9DpT.jpg" id="imgPreview"
+                                        class="card-img-top img-fluid" alt="singleminded">
                                 </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Example Ingredients 1</li>
-                                    <li class="list-group-item">Example Ingredients 2</li>
-                                    <li class="list-group-item">Example Ingredients 3</li>
-                                </ul>
+
                             </div>
                         </div>
 
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary">Add Data</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+
+        <section class="section">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Remaining Stock</h4>
+                </div>
+
+                <div class="card-body">
+                    @csrf
+                    <div class="row">
+                        <div class="table-responsive col-12">
+                            <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+                                <div class="dataTable-container">
+                                    <table class="table table-striped dataTable-table" id="table_data">
+                                        <thead>
+                                            <tr>
+                                                <th data-sortable="">No</th>
+                                                <th data-sortable="">Name</th>
+                                                <th data-sortable="">Unit</th>
+                                                <th data-sortable="">Current Stock</th>
+                                                <th data-sortable="">Remain Stock</th>
+                                                <th data-sortable="">Created at</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($datas as $data)
+                                                <tr>
+
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $data->name }}</td>
+                                                    <td>{{ $data->unit }}</td>
+                                                    <td>{{ $data->stock }}</td>
+
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <input type="number" min="0" class="form-control"
+                                                                name="used[{{ $data->id }}]" id=""
+                                                                aria-describedby="helpId" value="0">
+                                                        </div>
+                                                    </td>
+                                                    <td>{{ $data->created_at }}</td>
+
+
+                                                </tr>
+                                            @empty
+
+                                            @endforelse
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <button type="submit" class="btn btn-primary btn-block">Add Data</button>
                         </div>
                     </div>
 
-                </form>
-
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </form>
 
 @endsection
 
 
 @push('script')
-    <script>
-        var el = document.getElementById('formFile');
-        el.onchange = function() {
-            var fileReader = new FileReader();
-            fileReader.readAsDataURL(document.getElementById("formFile").files[0])
-            fileReader.onload = function(oFREvent) {
-                document.getElementById("imgPreview").src = oFREvent.target.result;
-            };
-        }
-
-
-    
-        $.preview = function() {
-                $("#previewName").text($("#inputName").val());
-                var title = $.trim($("#inputName").val())
-                if (title == "") {
-                    $("#previewName").text("Menu Name")
-                }
-            };
-
-            $("#inputName").keyup(function() {
-                $.preview();
-            });
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/v/bs4-4.1.1/jszip-2.5.0/dt-1.10.23/b-1.6.5/b-colvis-1.6.5/b-flash-1.6.5/b-html5-1.6.5/b-print-1.6.5/cr-1.5.3/r-2.2.7/sb-1.0.1/sp-1.2.2/datatables.min.js">
     </script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js">
+    </script>
+    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js">
+    </script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js">
+    </script>
+
+    <script type="text/javascript">
+        $(function() {
+            var table = $('#table_data').DataTable({
+                processing: true,
+                serverSide: false,
+                columnDefs: [{
+                    orderable: true,
+                    targets: 0
+                }],
+                dom: 'T<"clear">lfrtip<"bottom"B>',
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
+                buttons: [
+                    'copyHtml5',
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Data Export {{ \Carbon\Carbon::now()->year }}'
+                    },
+                    'csvHtml5',
+                ],
+            });
+
+
+
+
+        });
+
+        $('body').on("click", ".btn-delete", function() {
+            var id = $(this).attr("id")
+            $(".btn-destroy").attr("href", window.location.origin + "/menu/" + id + "/delete")
+            $("#destroy-modal").modal("show")
+        });
+    </script>
+
+
 @endpush

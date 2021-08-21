@@ -73,6 +73,7 @@ Route::prefix('stock-opname')->group(function () {
     Route::get('/manage', 'StockOpnameController@viewManage');
     Route::get('/input-daily', 'StockOpnameController@viewInputDaily');
     Route::get('/daily-input', 'StockOpnameController@viewInputDaily');
+    Route::post('/daily-input/store', 'StockOpnameController@storeDaily');
 });
 
 

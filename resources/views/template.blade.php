@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{{ asset('/frontend') }}/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('/frontend') }}/assets/css/app.css">
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css" href="http://keith-wood.name/css/jquery.signature.css">
 </head>
 
 <body>
