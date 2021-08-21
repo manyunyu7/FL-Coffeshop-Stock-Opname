@@ -18,6 +18,7 @@ class CreateInboundLogisticTable extends Migration
             $table->unsignedBigInteger('id_supplier')->nullable();
             $table->unsignedBigInteger('id_material')->nullable();
             $table->string('transaction_number')->nullable();
+            $table->string('photo')->nullable();
             $table->string('count')->nullable();
             $table->boolean('is_deleted')->default(0)->nullable();
             $table->foreign('id_supplier')->references('id')->on('suppliers');

@@ -91,6 +91,10 @@ Route::prefix('inbound')->group(function () {
     Route::post('/daily-input/store', 'InboundController@storeDaily');
 });
 
+Route::prefix('outbond')->group(function () {
+    Route::get('/history', 'OutbondController@viewManage');
+});
+
 
 
 

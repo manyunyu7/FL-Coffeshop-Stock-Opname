@@ -93,9 +93,6 @@
                         <span>Manage Stock Opname</span>
                     </a>
                     <ul class="submenu  {{ (Request::is('stock-opname/*')) ? 'active' : ''}} ">
-                        <li class="submenu-item   {{ (Request::is('stock-opname/manual-input')) ? 'active' : ''}}">
-                            <a href="{{url('/stock-opname/manual-input')}}">Manual Input</a>
-                        </li>
                         <li class="submenu-item  {{ (Request::is('stock-opname/daily-input')) ? 'active' : ''}} ">
                             <a href="{{url('/stock-opname/daily-input')}}">Daily Input</a>
                         </li>
@@ -105,7 +102,7 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-item  has-sub  {{ (Request::is('material/inbound*')) ? 'active' : ''}}">
+                <li class="sidebar-item  has-sub  {{ (Request::is('inbound*')) ? 'active' : ''}}">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
                         <span>Inbound Logistic</span>
@@ -114,8 +111,20 @@
                         <li class="submenu-item   {{ (Request::is('inbound/create')) ? 'active' : ''}}">
                             <a href="{{url('/inbound/create')}}">Create New Inbound</a>
                         </li>
-                        <li class="submenu-item  {{ (Request::is('inbound/manage')) ? 'active' : ''}}">
+                        <li class="submenu-item  {{ (Request::is('/inbound/manage')) ? 'active' : ''}}">
                             <a href="{{url('/inbound/manage')}}">See Existing Inbound Logistic</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item  has-sub  {{ (Request::is('/outbond/*')) ? 'active' : ''}}">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>Outbond Logistic</span>
+                    </a>
+                    <ul class="submenu  {{ (Request::is('outbond/*')) ? 'active' : ''}} ">
+                        <li class="submenu-item   {{ (Request::is('outbond/history')) ? 'active' : ''}}">
+                            <a href="{{url('/outbond/history')}}">Outbond Histories</a>
                         </li>
                     </ul>
                 </li>

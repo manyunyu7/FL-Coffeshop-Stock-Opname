@@ -90,8 +90,9 @@
                         </div>
 
                         <div class="col-12">
-                            <button class="btn btn-primary btn-add">Add Data</button>
+                            <button type="button" class="btn btn-primary btn-addz">Add Data</button>
                         </div>
+
                     </div>
 
                     <!-- Modal -->
@@ -108,7 +109,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    Added Stock can't be deleted or edited ( one way only ) 
+                                    Added Stock can't be deleted or edited ( one way only )
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-light-secondary hide-modal" data-dismiss="modal">
@@ -116,12 +117,10 @@
                                         <span class=" d-sm-block">Close</span>
                                     </button>
 
-                                    <a class="btn-destroy" href="">
-                                        <button type="submit" class="btn btn-primary ml-1 hide-modal " data-dismiss="modal">
-                                            <i class="bx bx-check d-block d-sm-none"></i>
-                                            <span class=" d-sm-block">Submit Data</span>
-                                        </button>
-                                    </a>
+                                    <button type="submit" class="btn btn-primary ml-1 hide-modal " data-dismiss="modal">
+                                        <i class="bx bx-check d-block d-sm-none"></i>
+                                        <span class=" d-sm-block">Submit Data</span>
+                                    </button>
 
                                 </div>
                             </div>
@@ -148,7 +147,7 @@
             };
         }
 
-        $('body').on("click", ".btn-add", function() {
+        $('body').on("click", ".btn-addz", function() {
             var id = $(this).attr("id")
             $("#add-modal").modal("show")
         });
