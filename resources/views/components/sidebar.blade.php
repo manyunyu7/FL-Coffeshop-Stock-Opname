@@ -3,8 +3,8 @@
         <div class="sidebar-header">
             <div class="d-flex justify-content-between">
                 <div class="logo d-flex">
-                    <h1 class="mr-3">Nawa Coffee</h1>
-                    <a href="{{url('/')}}"><img src="https://ik.imagekit.io/tvlk/cul-asset/guys1L+Yyer9kzI3sp-pb0CG1j2bhflZGFUZOoIf1YOBAm37kEUOKR41ieUZm7ZJ/tvlk-prod-cul-assets/culinary/asset/REST_644-720x720-FIT_AND_TRIM-7bc0950ab2c8062e21179b42fffe8d6c.jpeg?tr=q-40,c-at_max,w-1080,h-1920&_src=imagekit" alt="Logo" srcset="" style="height: 70px !important;"></a>
+                    <h1 class="mr-3">{{config('app.name')}}</h1>
+                    <a href="{{url('/')}}"><img src="{{asset('frontend/assets/images/logo/logo.png')}}" alt="Logo" srcset="" style="height: 70px !important;"></a>
                 </div>
                 <div class="toggler">
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
